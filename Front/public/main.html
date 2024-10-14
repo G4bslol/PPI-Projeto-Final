@@ -14,17 +14,29 @@
 
     <header>
         <nav>
-            <div id="main">
-                <button class="openbtn" onclick="openNav()">User</button>
-            </div>
-            <div id="mySidebar" class="sidebar">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            </div>
+            <h2 style="margin-right: 20px;">Perfil Usuário</h2>
+            <button class="open-btn" onclick="openSidebar()">☰</button>
         </nav>
+        <aside class="sidebar" id="sidebar">
+            <button class="close-btn" onclick="closeSidebar()">X</button>
+            <div class="box">
+                <form method="post" action="/login">
+                    <h3>Login de Usuário</h3>
+                    <input type="text" id="user" name="user" placeholder="Usuário" required>
+                    <input type="password" id="password" name="password" placeholder="Senha" required>
+                    <button class="login" type="submit">Login</button>
+                </form>
+                <form method="get" action="/logout">
+                    <button class="logout" type="submit">Logout</button>
+                </form>
+            </div>
+        </aside>
     </header>
 
-    
-    
+    <div id="sidebar" class="sidebar">
+        <button onclick="closeSidebar()">&times;</button>
+    </div>
+
     <section>
 
     </section>
