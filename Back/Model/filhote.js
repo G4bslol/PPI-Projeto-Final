@@ -5,7 +5,7 @@ export default class Filhote {
     #especie
     #raca
 
-    constructor(id, especie, raca) {
+    constructor(especie, raca, id) {
         this.#id = id
         this.#especie = especie
         this.#raca = raca
@@ -33,9 +33,9 @@ export default class Filhote {
 
     toSring() {
         return `
-        ID:${this.#id}\n
-        Espécie: ${this.#especie}\n
-        Raça: ${this.#raca}\n`
+        ID:${this.#id}
+        Espécie: ${this.#especie}
+        Raça: ${this.#raca}`
     }
 
     toJSON() {

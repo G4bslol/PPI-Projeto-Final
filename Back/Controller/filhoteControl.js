@@ -3,21 +3,21 @@ import Filhote from "../Model/filhote.js";
 export default class FilhoteControl {
 
     gravar(req, res) {
-        if (req.method == 'POST' && req.is("application/json")){
+        if (req.method == 'POST' && req.is("application/json")) {
             const data = req.data;
             const id = data.id
             const especie = data.especie
             const raca = data.raca
 
             if (especie && raca) {
-                const filhote = new Filhote(id, especie, raca);
-
-                filhote.incluir().then(()=>{
+                const filhote = new Filhote(especie, raca);
+                console.log(filhote)
+                filhote.incluir().then(() => {
                     res.status(201).json({
                         "status": true,
                         "message": "filhote incluído com sucesso!"
                     })
-                }).catch((error)=>{
+                }).catch((error) => {
                     res.status(500).json({
                         "status": false,
                         "message": "Erro ao incluír o filhote: " + error.message
@@ -30,6 +30,11 @@ export default class FilhoteControl {
                     "message": "Informe todos os dados do filhote!"
                 })
             }
+        } else {
+            res.status(400).json({
+                "status": false,
+                "message": "Informe todos os dados do filhote!"
+            })
         }
     }
 
@@ -39,17 +44,17 @@ export default class FilhoteControl {
             const id = data.id;
             const especie = data.especie;
             const raca = data.raca;
-            
-            
+
+
             if (id && especie && raca) {
                 const filhote = new Filhote(id, especie, raca);
 
-                filhote.alterar().then(()=>{
+                filhote.alterar().then(() => {
                     res.status(201).json({
                         "status": true,
                         "message": "filhote alterado com sucesso!"
                     })
-                }).catch((error)=>{
+                }).catch((error) => {
                     res.status(500).json({
                         "status": false,
                         "message": "Erro ao alterar o filhote: " + error.message

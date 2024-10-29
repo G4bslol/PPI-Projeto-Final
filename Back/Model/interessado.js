@@ -1,5 +1,4 @@
 import interessadoDAO from "../DAO/interessadoDAO.js"
-import filhote from './filhote.js'
 
 export default class Interessado {
     #cpf
@@ -9,7 +8,7 @@ export default class Interessado {
     #id
     #filhote
 
-    constructor(cpf, nome, telefone, email, id) {
+    constructor(cpf, nome, telefone, email, id, filhote) {
         this.#cpf = cpf
         this.#nome = nome
         this.#telefone = telefone

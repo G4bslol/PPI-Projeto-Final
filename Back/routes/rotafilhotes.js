@@ -5,11 +5,11 @@ import FilhotesControl from "../Controller/filhoteControl.js";
 const rotaFilhotes = Router();
 const ctrlFilhote = new FilhotesControl();
 
-rotaFilhotes.get("/filhote-cadastro.html", ctrlFilhote.consultar)
-.get("/filhote-cadastro.html:search", ctrlFilhote.consultar)
-.post("/filhote-cadastro.html", ctrlFilhote.gravar)
-.put("/filhote-cadastro.html", ctrlFilhote.alterar)
-.patch("/filhote-cadastro.html", ctrlFilhote.alterar)
-.delete("/filhote-cadastro.html", ctrlFilhote.excluir)
+rotaFilhotes.get("/", ctrlFilhote.consultar)
+.get("/:search", ctrlFilhote.consultar)
+.post("/", ctrlFilhote.gravar)
+.put("/", ctrlFilhote.alterar)
+.patch("/", ctrlFilhote.alterar)
+.delete("/", ctrlFilhote.excluir)
 
 export default rotaFilhotes;

@@ -10,6 +10,7 @@ export default class InteressadoControl {
             const telefone = data.telefone
             const email = data.email
             const id = data.id
+            const filhote = data.filhote
 
             if (cpf && nome && telefone && email) {
                 const interessado = new Interessado(cpf, nome, telefone, email);
@@ -32,6 +33,11 @@ export default class InteressadoControl {
                     "message": "Informe todos os dados do interessado!"
                 })
             }
+        } else {
+            res.status(400).json({
+                "status": false,
+                "message": "Requisição inválida, informe o ID do interessado!"
+            })
         }
     }
 

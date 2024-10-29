@@ -52,6 +52,7 @@ export default class FilhoteDAO {
                 filhote.raca,
                 filhote.id,
             ];
+            console.log(sql, parametros)
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }
@@ -74,16 +75,12 @@ export default class FilhoteDAO {
         console.log('Consultar\n')
         let sql = "";
         const parametros = [];
-        if (param.especie) {
-            sql = `SELECT * FROM filhote WHERE especie = ? order by especie;`;
-            parametros.push(param)
-        }
-        else if (param.raca) {
+        if (param) {
             sql = `SELECT * FROM filhote WHERE raca = ? order by raca;`;
             parametros.push(param)
         }
         else {
-            sql = `SELECT * FROM filhote order by especie;`;
+            sql = `SELECT * FROM filhote order by raca;`;
         }
 
         const conexao = await connect();
