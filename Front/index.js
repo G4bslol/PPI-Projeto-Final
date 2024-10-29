@@ -4,7 +4,7 @@ import session from 'express-session'
 
 
 const host = '0.0.0.0';
-const port = '3333';
+const port = '3000';
 const app = express();
 
 app.use(express.urlencoded({ extended: true }))

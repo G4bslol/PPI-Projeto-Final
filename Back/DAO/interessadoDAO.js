@@ -1,7 +1,7 @@
 import connect from "./connection.js"
-import Partido from "../Model/partido.js"
+import Interessado from "../Model/interessado.js"
 
-export default class PartidoDAO {
+export default class interessadoDAO {
 
     constructor() {
         this.init();
@@ -10,11 +10,12 @@ export default class PartidoDAO {
     async init() {
         try {
             const conexao = await connect();
-            const sql = `CREATE TABLE IF NOT EXISTS partido (
+            const sql = `CREATE TABLE IF NOT EXISTS interessado (
                         id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                        cpf CHAR(11) NOT NULL,
                         nome VARCHAR(100) NOT NULL,
-                        sigla VARCHAR(5) NOT NULL,
-                        numeroRegistro INT NOT NULL)`
+                        telefone CHAR(11) NOT NULL,
+                        email INT NOT NULL)`
 
             await conexao.execute(sql);
             await global.poolConnections.releaseConnection(conexao)
@@ -25,47 +26,51 @@ export default class PartidoDAO {
 
     }
 
-    async gravar(partido) {
+    async gravar(interessado) {
         console.log('Inserir\n')
-        if (Partido instanceof Partido) {
+        if (interessado instanceof Interessado) {
             const conexao = await connect();
-            const sql = `INSERT INTO partido(nome, sigla, numeroRegistro) VALUES (?, ?, ?)`
+            const sql = `INSERT INTO interessado(cpf, nome, telefone, email) VALUES (?, ?, ?, ?)`
             const parametros = [
-                partido.nome,
-                partido.sigla,
-                partido.numeroRegistro,
+                interessado.cpf,
+                interessado.nome,
+                interessado.telefone,
+                interessado.email,
             ];
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }
     }
 
-    async alterar(partido) {
+    async alterar(interessado) {
         console.log('Alterar\n')
-        if (partido instanceof Partido) {
+        if (interessado instanceof Interessado) {
             const conexao = await connect();
-            const sql = `UPDATE partido SET nome = ?,
-                        sigla = ?,
-                        numeroRegistro = ?,
+            const sql = `UPDATE interessado SET
+                        cpf = ?,
+                        nome = ?,
+                        telefone = ?,
+                        email = ?,
                         WHERE (id = ?);`
             const parametros = [
-                partido.nome,
-                partido.sigla,
-                partido.numeroRegistro,
-                partido.id,
+                interessado.cpf,
+                interessado.nome,
+                interessado.telefone,
+                interessado.email,
+                interessado.id,
             ];
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }
     }
 
-    async excluir(partido) {
+    async excluir(interessado) {
         console.log('Excluir\n')
-        if (partido instanceof Partido) {
+        if (interessado instanceof Interessado) {
             const conexao = await connect();
-            const sql = `DELETE FROM partido WHERE title = ?`;
+            const sql = `DELETE FROM interessado WHERE id = ?`;
             const parametros = [
-                partido.title
+                interessado.id
             ]
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
@@ -77,27 +82,26 @@ export default class PartidoDAO {
         let sql = "";
         const parametros = [];
         if (param) {
-            sql = `SELECT * FROM evento WHERE title = ? order by title;`;
+            sql = `SELECT * FROM evento WHERE nome = ? order by nome;`;
             parametros.push(param)
         } else {
-            sql = `SELECT * FROM evento order by title;`;
+            sql = `SELECT * FROM evento order by nome;`;
         }
 
         const conexao = await connect();
         const [registros] = await conexao.execute(sql, parametros);
 
-        let eventList = [];
+        let listaInteressado = [];
         for (const registro of registros) {
-            const event = new Event(
-                registro.title,
-                registro.description,
-                registro.local,
-                registro.date,
-                registro.ticketValue,
+            const interessado = new Interessado(
+                registro.cpf,
+                registro.nome,
+                registro.telefone,
+                registro.email,
             );
-            eventList.push(event)
+            listaInteressado.push(interessado)
         }
         await global.poolConnections.releaseConnection(conexao);
-        return eventList;
+        return listaInteressado;
     }
 }

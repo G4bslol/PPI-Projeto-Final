@@ -1,4 +1,4 @@
-import PartidoDAO from "../DAO/partidoDAO.js"
+import PartidoDAO from "../DAO/interessadoDAO.js"
 
 export default class Partido {
     //Atributos privados
