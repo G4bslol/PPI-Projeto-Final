@@ -9,6 +9,7 @@ export default class InteressadoControl {
             const nome = data.nome
             const telefone = data.telefone
             const email = data.email
+            const id = data.id
 
             if (cpf && nome && telefone && email) {
                 const interessado = new Interessado(cpf, nome, telefone, email);

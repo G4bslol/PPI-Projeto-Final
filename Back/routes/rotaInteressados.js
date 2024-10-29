@@ -5,11 +5,11 @@ import InteressadoControl from "../Controller/interessadoControl.js";
 const rotaInteressados = Router();
 const ctrlInteress = new InteressadoControl();
 
-rotaInteressados.get("/interessado-cadastro.html", ctrlInteress.consultar)
-.get("/interessado-cadastro.html:search", ctrlInteress.consultar)
-.post("/interessado-cadastro.html", ctrlInteress.gravar)
-.put("/interessado-cadastro.html", ctrlInteress.alterar)
-.patch("/interessado-cadastro.html", ctrlInteress.alterar)
-.delete("/interessado-cadastro.html", ctrlInteress.excluir)
+rotaInteressados.get("/interessados", ctrlInteress.consultar)
+.get("/interessados:search", ctrlInteress.consultar)
+.post("/interessados", ctrlInteress.gravar)
+.put("/interessados", ctrlInteress.alterar)
+.patch("/interessados", ctrlInteress.alterar)
+.delete("/interessados", ctrlInteress.excluir)
 
 export default rotaInteressados;

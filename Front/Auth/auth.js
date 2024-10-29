@@ -6,23 +6,13 @@ export default function auth(req, res) {
         req.session.auth = true
         res.redirect('/main.html')
     } else {
-        res.write('<html>');
-        res.write('<head>');
-        res.write('<title>Falha no login</title>');
-        res.write('<meta charset="utf-8">');
-        res.write('</head>');
-        res.write('<body>');
-        res.write('<h1>Usuário ou senha inválidos</h1>');
-        res.write('<a href="/login.html">Voltar para tela de login</a>');
-        res.write('</body>');
-        res.write('</html>');
-        res.end();
+        console.log('Passou pelo else admin / admin')
     }
 }
 
-export function validateAuth(req, res, nextStep){
+export function validateAuth(req, res, next){
     if(req.session.auth != undefined && req.session.auth == true) {
-        nextStep()
+        next()
     } else {
         res.redirect('/main.html')
     }

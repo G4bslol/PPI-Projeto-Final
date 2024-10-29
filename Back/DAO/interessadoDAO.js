@@ -11,12 +11,11 @@ export default class interessadoDAO {
         try {
             const conexao = await connect();
             const sql = `CREATE TABLE IF NOT EXISTS interessado (
-                        id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                        id INT AUTO_INCREMENT PRIMARY KEY,
                         cpf CHAR(11) NOT NULL,
                         nome VARCHAR(100) NOT NULL,
                         telefone CHAR(11) NOT NULL,
-                        email INT NOT NULL)`
-
+                        email VARCHAR(100) NOT NULL)`
             await conexao.execute(sql);
             await global.poolConnections.releaseConnection(conexao)
         }
@@ -50,8 +49,8 @@ export default class interessadoDAO {
                         cpf = ?,
                         nome = ?,
                         telefone = ?,
-                        email = ?,
-                        WHERE (id = ?);`
+                        email = ?
+                        WHERE id = ?;`
             const parametros = [
                 interessado.cpf,
                 interessado.nome,
@@ -67,11 +66,13 @@ export default class interessadoDAO {
     async excluir(interessado) {
         console.log('Excluir\n')
         if (interessado instanceof Interessado) {
+            console.log('Entrou no if')
             const conexao = await connect();
             const sql = `DELETE FROM interessado WHERE id = ?`;
             const parametros = [
                 interessado.id
             ]
+            console.log(interessado.toSring(), sql, parametros)
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }
@@ -98,6 +99,7 @@ export default class interessadoDAO {
                 registro.nome,
                 registro.telefone,
                 registro.email,
+                registro.id
             );
             listaInteressado.push(interessado)
         }

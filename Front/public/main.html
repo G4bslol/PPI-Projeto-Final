@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 
 </head>
@@ -18,11 +17,15 @@
     <header>
 
         <nav>
-            <a href="/main">Home</a>
-            <a href="/interessado-cadastro">Interessados</a>
-            <a href="/filhote-cadastro">Filhotes</a>
-            <h2 style="margin-right: 20px;">Perfil Usuário</h2>
-            <button class="open-btn" onclick="openSidebar()">☰</button>
+            <div class="links">
+                <a href="/main">Home</a>
+                <a href="/interessado">Interessados</a>
+                <a href="/filhote">Filhotes</a>
+            </div>
+            <div style="display: flex;">
+                <h2 style="margin-right: 20px;">Perfil Usuário</h2>
+                <button class="open-btn" onclick="openSidebar()">☰</button>
+            </div>
         </nav>
         <aside class="sidebar" id="sidebar">
             <button class="close-btn" onclick="closeSidebar()">X</button>
@@ -55,7 +58,6 @@
 </body>
 
 <script src="./main.js"></script>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </html>

@@ -5,18 +5,21 @@
     <link rel="stylesheet" href="./styles/styles.css" />
     <meta charset="utf-8">
     <title>Cadastro de Partidos</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3472/3472688.png">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="/main">Home</a>
-            <a href="/interessado-cadastro">Interessados</a>
-            <a href="/filhote-cadastro">Filhotes</a>
-            <h2 style="margin-right: 20px;">Perfil Usuário</h2>
-            <button class="open-btn" onclick="openSidebar()">☰</button>
+            <div class="links">
+                <a href="/main">Home</a>
+                <a href="/interessado">Interessados</a>
+                <a href="/filhote">Filhotes</a>
+            </div>
+            <div style="display: flex;">
+                <h2 style="margin-right: 20px;">Perfil Usuário</h2>
+                <button class="open-btn" onclick="openSidebar()">☰</button>
+            </div>
         </nav>
         <aside class="sidebar" id="sidebar">
             <button class="close-btn" onclick="closeSidebar()">X</button>
@@ -40,9 +43,8 @@
                 <h1 style="color: white; margin-bottom: 10px;">Cadastro de Interessados</h1>
                 <input class="break" type="text" id="cpf" name="cpf" placeholder="CPF">
                 <input class="break" type="text" id="nome" name="nome" placeholder="Nome">
-                <input class="break" type="text" id="telefone" name="telefone" placeholder="telefone">
-                <input class="break" type="email" id="email" name="email" placeholder="email">
-                <input class="break" type="number" id="registerNumber" name="registerNumber" placeholder="Número de Registro">
+                <input class="break" type="text" id="telefone" name="telefone" placeholder="Telefone">
+                <input class="break" type="email" id="email" name="email" placeholder="Email">
                 <div id="message"></div>
                 <button class="cadastrar " id="confirmButton" type="submit">CADASTRAR</button>
                 <button class="cancelar" type="button">CANCELAR</button>
@@ -54,8 +56,6 @@
 
     </div>
 </body>
-
-<script src="interessado-cadastro.js"></script>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./private.js"></script>
 
 </html>

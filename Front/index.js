@@ -24,16 +24,15 @@ app.get('/logout', logout)
 
 app.post('/login', auth)
 
-app.get('/interessado-cadastro', (req, res) => {
+app.get('/interessado', (req, res) => {
     res.redirect('/interessado-cadastro.html')
 })
 
-app.get('/filhote-cadastro', (req, res) => {
+app.get('/filhote', (req, res) => {
     res.redirect('/filhote-cadastro.html')
 })
 
-// app.use(validateAuth, express.static('./private', (req, res) => { }))
-app.use(express.static('./private'))
+app.use(validateAuth, express.static('./private', (req, res) => {}))
 
 app.use((req, res) => {
     res.status(404).redirect('/main.html');

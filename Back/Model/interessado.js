@@ -1,26 +1,26 @@
 import interessadoDAO from "../DAO/interessadoDAO.js"
 
 export default class Interessado {
-    #id
     #cpf
     #nome
     #telefone
     #email
+    #id
 
-    constructor(id, cpf, nome, telefone, email) {
-        this.#id = id
+    constructor(cpf, nome, telefone, email, id) {
         this.#cpf = cpf
         this.#nome = nome
         this.#telefone = telefone
         this.#email = email
+        this.#id = id
     }
 
-    get id() {
-        return this.#id
+    get cpf() {
+        return this.#cpf
     }
 
-    set id(novoid) {
-        this.#id = novoid
+    set cpf(novoCpf) {
+        this.#cpf = novoCpf
     }
 
     get nome() {
@@ -47,21 +47,30 @@ export default class Interessado {
         this.#email = newEmail
     }
 
+    get id() {
+        return this.#id
+    }
+
+    set id(newID) {
+        this.#id = newID
+    }
+
     toSring() {
         return `
-        CPF: ${this.#cpf}\n
-        Nome: ${this.#nome}\n
-        Telefone: ${this.#telefone}\n
-        Email: ${this.#email}\n`
+        ID: ${this.#id}
+        CPF: ${this.#cpf}
+        Nome: ${this.#nome}
+        Telefone: ${this.#telefone}
+        Email: ${this.#email}`
     }
 
     toJSON() {
         return {
-            id: this.id,
+            id: this.#id,
             cpf: this.#cpf,
             nome: this.#nome,
             telefone: this.#telefone,
-            email: this.email,
+            email: this.#email,
         }
     }
 
@@ -77,7 +86,7 @@ export default class Interessado {
 
     async excluir() {
         const interessDAO = new interessadoDAO();
-        await interessDAO.excluir(this);
+        await interessDAO.remover(this);
     }
 
     async consultar(param) {

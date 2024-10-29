@@ -5,17 +5,20 @@
     <link rel="stylesheet" href="./styles/styles.css" />
     <meta charset="utf-8">
     <title>Cadastro de Partidos</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3472/3472688.png">
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="/main">Home</a>
-            <a href="/interessado-cadastro">Interessados</a>
-            <a href="/filhote-cadastro">Filhotes</a>
-            <h2 style="margin-right: 20px;">Perfil Usuário</h2>
-            <button class="open-btn" onclick="openSidebar()">☰</button>
+            <div class="links">
+                <a href="/main">Home</a>
+                <a href="/interessado">Interessados</a>
+                <a href="/filhote">Filhotes</a>
+            </div>
+            <div style="display: flex;">
+                <h2 style="margin-right: 20px;">Perfil Usuário</h2>
+                <button class="open-btn" onclick="openSidebar()">☰</button>
+            </div>
         </nav>
         <aside class="sidebar" id="sidebar">
             <button class="close-btn" onclick="closeSidebar()">X</button>
@@ -52,6 +55,6 @@
     </div>
 </body>
 
-<script src="partido-cadastro.js"></script>
+<script src="./private.js"></script>
 
 </html>
