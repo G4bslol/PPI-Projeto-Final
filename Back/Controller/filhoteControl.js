@@ -1,34 +1,33 @@
-import Interessado from "../Model/interessado.js";
+import Filhote from "../Model/filhote.js";
 
-export default class InteressadoControl {
+export default class FilhoteControl {
 
     gravar(req, res) {
         if (req.method == 'POST' && req.is("application/json")){
             const data = req.data;
-            const cpf = data.cpf
-            const nome = data.nome
-            const telefone = data.telefone
-            const email = data.email
+            const id = data.id
+            const especie = data.especie
+            const raca = data.raca
 
-            if (cpf && nome && telefone && email) {
-                const interessado = new Interessado(cpf, nome, telefone, email);
+            if (especie && raca) {
+                const filhote = new Filhote(id, especie, raca);
 
-                interessado.incluir().then(()=>{
+                filhote.incluir().then(()=>{
                     res.status(201).json({
                         "status": true,
-                        "message": "Interessado incluído com sucesso!"
+                        "message": "filhote incluído com sucesso!"
                     })
                 }).catch((error)=>{
                     res.status(500).json({
                         "status": false,
-                        "message": "Erro ao incluír o interessado: " + error.message
+                        "message": "Erro ao incluír o filhote: " + error.message
                     })
                 })
             }
             else {
                 res.status(400).json({
                     "status": false,
-                    "message": "Informe todos os dados do interessado!"
+                    "message": "Informe todos os dados do filhote!"
                 })
             }
         }
@@ -37,31 +36,30 @@ export default class InteressadoControl {
     alterar(req, res) {
         if ((req.method == "PUT" || req.method == "PATCH") && req.is("application/json")) {
             const data = req.data;
-            const cpf = data.cpf
-            const nome = data.nome
-            const telefone = data.telefone
-            const email = data.email
+            const id = data.id;
+            const especie = data.especie;
+            const raca = data.raca;
             
             
-            if (cpf && nome && telefone && email) {
-                const interessado = new Interessado(cpf, nome, telefone, email);
+            if (id && especie && raca) {
+                const filhote = new Filhote(id, especie, raca);
 
-                interessado.alterar().then(()=>{
+                filhote.alterar().then(()=>{
                     res.status(201).json({
                         "status": true,
-                        "message": "Interessado alterado com sucesso!"
+                        "message": "filhote alterado com sucesso!"
                     })
                 }).catch((error)=>{
                     res.status(500).json({
                         "status": false,
-                        "message": "Erro ao alterar o interessado: " + error.message
+                        "message": "Erro ao alterar o filhote: " + error.message
                     })
                 })
             }
             else {
                 res.status(400).json({
                     "status": false,
-                    "message": "Informe todos os dados do interessado!"
+                    "message": "Informe todos os dados do filhote!"
                 })
             }
         }
@@ -71,25 +69,27 @@ export default class InteressadoControl {
         if (req.method == "DELETE" && req.is("application/json")) {
             const dados = req.body;
             const id = dados.id;
+            const especie = dados.especie;
+            const raca = dados.raca;
 
             if (id) {
-                const interessado = new Interessado(id);
-                interessado.excluir().then(() => {
+                const filhote = new Filhote(id, especie, raca);
+                filhote.excluir().then(() => {
                     res.status(200).json({
                         "status": true,
-                        "message": "Interessado excluído com sucesso!"
+                        "message": "filhote excluído com sucesso!"
                     })
                 }).catch((error) => {
                     res.status(500).json({
                         "status": false,
-                        "message": "Erro ao excluir o interessado: " + error.message
+                        "message": "Erro ao excluir o filhote: " + error.message
                     })
                 })
             }
             else {
                 res.status(400).json({
                     "status": false,
-                    "message": "Requisição inválida, informe o ID do interessado!"
+                    "message": "Requisição inválida, informe o ID do filhote!"
                 });
             }
         } else {
@@ -109,17 +109,17 @@ export default class InteressadoControl {
         }
 
         if (req.method == "GET") {
-            const interessado = new Interessado()
-            interessado.consultar(search).then((interessados) => {
+            const filhote = new Filhote()
+            filhote.consultar(search).then((filhotes) => {
                 return res.status(200).json({
                     "status": true,
-                    "listaInteressados": interessados
+                    "listafilhotes": filhotes
 
                 })
             }).catch((error) => {
                 res.status(500).json({
                     "status": false,
-                    "message": "Erro ao consultar os eventos: " + error.message
+                    "message": "Erro ao consultar os filhotes: " + error.message
                 })
             })
         } else {

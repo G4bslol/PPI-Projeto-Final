@@ -1,72 +1,69 @@
-import PartidoDAO from "../DAO/interessadoDAO.js"
+import FilhoteDAO from "../DAO/filhoteDAO.js"
 
-export default class Partido {
+export default class Filhote {
     //Atributos privados
-    #nome
-    #sigla
-    #registerNumber
+    #id
+    #especie
+    #raca
 
-    constructor(nome, sigla, registerNumber) {
-        this.#nome = nome
-        this.#sigla = sigla
-        this.#registerNumber = registerNumber
+    constructor(id, especie, raca) {
+        this.#id = id
+        this.#especie = especie
+        this.#raca = raca
     }
 
-    get nome() {
-        return this.#nome
+    get id() {
+        return this.#id
+    }
+    
+    get especie() {
+        return this.#especie
     }
 
-    set nome(novoNome) {
-        this.#nome = novoNome
+    set especie(novoEspecie) {
+        this.#especie = novoEspecie
     }
 
-    get sigla() {
-        return this.#sigla
+    get raca() {
+        return this.#raca
     }
 
-    set sigla(newSigla) {
-        this.#sigla = newSigla
-    }
-
-    get registerNumber() {
-        return this.#registerNumber
-    }
-
-    set registerNumber(newRegisterNumber) {
-        this.#registerNumber = newRegisterNumber
+    set raca(newRaca) {
+        this.#raca = newRaca
     }
 
     toSring() {
-        return `Nome: ${this.#nome}\n
-        Sigla: ${this.#sigla}\n
-        Número de Reg.: ${this.#registerNumber}\n`
+        return `
+        ID:${this.#id}\n
+        Espécie: ${this.#especie}\n
+        Raça: ${this.#raca}\n`
     }
 
     toJSON() {
         return {
-            nome: this.#nome,
-            sigla: this.#sigla,
-            registerNumber: this.registerNumber,
+            id: this.#id,
+            especie: this.#especie,
+            raca: this.#raca,
         }
     }
 
     async incluir() {
-        const partDAO = new PartidoDAO();
-        await partDAO.gravar(this);
+        const filhoteDAO = new FilhoteDAO();
+        await filhoteDAO.gravar(this);
     }
 
     async alterar() {
-        const partDAO = new PartidoDAO();
-        await partDAO.alterar(this);
+        const filhoteDAO = new FilhoteDAO();
+        await filhoteDAO.alterar(this);
     }
 
     async excluir() {
-        const partDAO = new PartidoDAO();
-        await partDAO.excluir(this);
+        const filhoteDAO = new FilhoteDAO();
+        await filhoteDAO.excluir(this);
     }
 
     async consultar(param) {
-        const partDAO = new PartidoDAO();
-        return await partDAO.consultar(param);
+        const filhoteDAO = new FilhoteDAO();
+        return await filhoteDAO.consultar(param);
     }
 }

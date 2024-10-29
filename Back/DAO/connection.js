@@ -9,7 +9,7 @@ export default async function connect() {
             user: 'root',
             port: 3306,
             password: "",
-            database: 'projfinaldb',
+            database: 'examedb',
             waitForConnections: true,
             connectionLimit: 10,
             maxIdle: 10,

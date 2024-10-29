@@ -24,11 +24,16 @@ app.get('/logout', logout)
 
 app.post('/login', auth)
 
-app.get('/partido-cadastro', (req, res) => {
-    res.redirect('/partido-cadastro.html')
+app.get('/interessado-cadastro', (req, res) => {
+    res.redirect('/interessado-cadastro.html')
 })
 
-app.use(validateAuth, express.static('./private', (req, res) => { }))
+app.get('/filhote-cadastro', (req, res) => {
+    res.redirect('/filhote-cadastro.html')
+})
+
+// app.use(validateAuth, express.static('./private', (req, res) => { }))
+app.use(express.static('./private'))
 
 app.use((req, res) => {
     res.status(404).redirect('/main.html');

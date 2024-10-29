@@ -82,10 +82,10 @@ export default class interessadoDAO {
         let sql = "";
         const parametros = [];
         if (param) {
-            sql = `SELECT * FROM evento WHERE nome = ? order by nome;`;
+            sql = `SELECT * FROM interessado WHERE nome = ? order by nome;`;
             parametros.push(param)
         } else {
-            sql = `SELECT * FROM evento order by nome;`;
+            sql = `SELECT * FROM interessado order by nome;`;
         }
 
         const conexao = await connect();

@@ -12,6 +12,9 @@
 <body>
     <header>
         <nav>
+            <a href="/main">Home</a>
+            <a href="/interessado-cadastro">Interessados</a>
+            <a href="/filhote-cadastro">Filhotes</a>
             <h2 style="margin-right: 20px;">Perfil Usuário</h2>
             <button class="open-btn" onclick="openSidebar()">☰</button>
         </nav>
@@ -34,9 +37,11 @@
     <div class="formBox">
         <div class="box">
             <form id="formEvent" method="post" action="#">
-                <h2 style="color: white; margin-bottom: 10px;">Cadastro de Partidos</h2>
+                <h1 style="color: white; margin-bottom: 10px;">Cadastro de Interessados</h1>
+                <input class="break" type="text" id="cpf" name="cpf" placeholder="CPF">
                 <input class="break" type="text" id="nome" name="nome" placeholder="Nome">
-                <input class="break" type="text" id="sigla" name="sigla" placeholder="Sigla">
+                <input class="break" type="text" id="telefone" name="telefone" placeholder="telefone">
+                <input class="break" type="email" id="email" name="email" placeholder="email">
                 <input class="break" type="number" id="registerNumber" name="registerNumber" placeholder="Número de Registro">
                 <div id="message"></div>
                 <button class="cadastrar " id="confirmButton" type="submit">CADASTRAR</button>

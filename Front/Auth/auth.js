@@ -4,7 +4,7 @@ export default function auth(req, res) {
 
     if (user == 'admin' && password == 'admin') {
         req.session.auth = true
-        res.redirect('/partido-cadastro')
+        res.redirect('/main.html')
     } else {
         res.write('<html>');
         res.write('<head>');
