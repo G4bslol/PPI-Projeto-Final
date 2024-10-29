@@ -38,13 +38,13 @@ const interessado = new Interessado("", "Renata", "18991273126", "netoerenata@gm
 //     console.log('Error: ' + err)
 // })
 
-interessado.consultar().then((listaInteressados) =>{
-    for(const interessado of listaInteressados){
-        console.log(interessado.toSring())
-    }
-}).catch((error) => {
-    console.log("Erro ao consultar: " + error)
-})
+// interessado.consultar().then((listaInteressados) =>{
+//     for(const interessado of listaInteressados){
+//         console.log(interessado.toSring())
+//     }
+// }).catch((error) => {
+//     console.log("Erro ao consultar: " + error)
+// })
 
 // interessado.alterar().then(() =>{
 //     console.log('Alteração finalizada')

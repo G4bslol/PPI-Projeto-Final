@@ -143,6 +143,17 @@ header button {
     font-family: sans-serif;
 }
 
+#puppy-option {
+    width: 25vw;
+    height: 40px;
+    margin-top: 5px;
+    background-color: #0E1011;
+    border-radius: 5px;
+    border: none;
+    color: rgb(112, 112, 112);
+    padding: 15px;
+}
+
 .formBox {
     height: 100vh;
     background: #0E1011;
@@ -150,6 +161,7 @@ header button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .formBox .box {
@@ -184,8 +196,9 @@ header button {
     flex-direction: column;
     width: 90%;
     justify-content: center;
-    align-items: center;
+    align-items: center;   
 }
+
 
 .formBox .box form {
     flex-direction: row;

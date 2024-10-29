@@ -1,4 +1,5 @@
 import interessadoDAO from "../DAO/interessadoDAO.js"
+import filhote from './filhote.js'
 
 export default class Interessado {
     #cpf
@@ -6,6 +7,7 @@ export default class Interessado {
     #telefone
     #email
     #id
+    #filhote
 
     constructor(cpf, nome, telefone, email, id) {
         this.#cpf = cpf
@@ -13,6 +15,7 @@ export default class Interessado {
         this.#telefone = telefone
         this.#email = email
         this.#id = id
+        this.#filhote = filhote
     }
 
     get cpf() {
@@ -55,13 +58,22 @@ export default class Interessado {
         this.#id = newID
     }
 
+    get filhote() {
+        return this.#filhote
+    }
+
+    set filhote(newFilhote) {
+        this.#filhote = newFilhote
+    }
+
     toSring() {
         return `
         ID: ${this.#id}
         CPF: ${this.#cpf}
         Nome: ${this.#nome}
         Telefone: ${this.#telefone}
-        Email: ${this.#email}`
+        Email: ${this.#email}
+        Filhote: ${this.#filhote}`
     }
 
     toJSON() {

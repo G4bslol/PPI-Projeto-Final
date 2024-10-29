@@ -1,7 +1,6 @@
 import FilhoteDAO from "../DAO/filhoteDAO.js"
 
 export default class Filhote {
-    //Atributos privados
     #id
     #especie
     #raca
