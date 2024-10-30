@@ -16,6 +16,7 @@ export default class interessadoDAO {
                         nome VARCHAR(100) NOT NULL,
                         telefone CHAR(11) NOT NULL,
                         email VARCHAR(100) NOT NULL)`
+
             await conexao.execute(sql);
             await global.poolConnections.releaseConnection(conexao)
         }
@@ -25,7 +26,7 @@ export default class interessadoDAO {
 
     }
 
-    async gravar(interessado) {
+    async incluir(interessado) {
         console.log('Inserir\n')
         if (interessado instanceof Interessado) {
             const conexao = await connect();
@@ -63,7 +64,7 @@ export default class interessadoDAO {
         }
     }
 
-    async excluir(interessado) {
+    async remover(interessado) {
         console.log('Excluir\n')
         if (interessado instanceof Interessado) {
             console.log('Entrou no if')
@@ -79,7 +80,6 @@ export default class interessadoDAO {
     }
 
     async consultar(param) {
-        console.log('Consultar\n')
         let sql = "";
         const parametros = [];
         if (param) {

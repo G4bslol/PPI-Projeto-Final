@@ -44,15 +44,14 @@ export default class FilhoteDAO {
             const conexao = await connect();
             const sql = `UPDATE filhote SET
             especie = ?,
-            raca = ?,
-            WHERE (id = ?);`
+            raca = ?
+            WHERE id = ?;`
             
             const parametros = [
                 filhote.especie,
                 filhote.raca,
                 filhote.id,
             ];
-            console.log(sql, parametros)
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }
@@ -89,9 +88,9 @@ export default class FilhoteDAO {
         let listaFilhotes = [];
         for (const registro of registros) {
             const filhote = new Filhote(
-                registro.id,
                 registro.especie,
                 registro.raca,
+                registro.id
             );
             listaFilhotes.push(filhote)
         }

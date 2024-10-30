@@ -6,23 +6,21 @@ export default class Interessado {
     #telefone
     #email
     #id
-    #filhote
 
-    constructor(cpf, nome, telefone, email, id, filhote) {
+    constructor(cpf, nome, telefone, email, id) {
         this.#cpf = cpf
         this.#nome = nome
         this.#telefone = telefone
         this.#email = email
         this.#id = id
-        this.#filhote = filhote
     }
 
     get cpf() {
         return this.#cpf
     }
 
-    set cpf(novoCpf) {
-        this.#cpf = novoCpf
+    set cpf(novoCPF) {
+        this.#cpf = novoCPF
     }
 
     get nome() {
@@ -57,22 +55,13 @@ export default class Interessado {
         this.#id = newID
     }
 
-    get filhote() {
-        return this.#filhote
-    }
-
-    set filhote(newFilhote) {
-        this.#filhote = newFilhote
-    }
-
     toSring() {
         return `
         ID: ${this.#id}
         CPF: ${this.#cpf}
         Nome: ${this.#nome}
         Telefone: ${this.#telefone}
-        Email: ${this.#email}
-        Filhote: ${this.#filhote}`
+        Email: ${this.#email}`
     }
 
     toJSON() {
@@ -87,7 +76,7 @@ export default class Interessado {
 
     async incluir() {
         const interessDAO = new interessadoDAO();
-        await interessDAO.gravar(this);
+        await interessDAO.incluir(this);
     }
 
     async alterar() {

@@ -34,9 +34,9 @@ app.get('/filhote', (req, res) => {
 
 app.use(validateAuth, express.static('./private', (req, res) => {}))
 
-app.use((req, res) => {
-    res.status(404).redirect('/main.html');
-});
+// app.use((req, res) => {
+//     res.status(404).redirect('/main.html');
+// });
 
 app.listen(port, host, () => {
     console.log(`Servidor Front-End rodando em http://${host}:${port}`)

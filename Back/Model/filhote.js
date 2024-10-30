@@ -1,20 +1,16 @@
 import FilhoteDAO from "../DAO/filhoteDAO.js"
 
 export default class Filhote {
-    #id
     #especie
     #raca
+    #id
 
     constructor(especie, raca, id) {
-        this.#id = id
         this.#especie = especie
         this.#raca = raca
+        this.#id = id
     }
 
-    get id() {
-        return this.#id
-    }
-    
     get especie() {
         return this.#especie
     }
@@ -29,6 +25,10 @@ export default class Filhote {
 
     set raca(newRaca) {
         this.#raca = newRaca
+    }
+
+    get id() {
+        return this.#id
     }
 
     toSring() {

@@ -7,8 +7,6 @@ function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
 }
 
-const urlBase = "http://localhost:4000"
-
 function carregarFilhotes() {
   fetch(urlBase + '/filhotes').then((resposta) => {
 
@@ -39,4 +37,88 @@ function carregarFilhotes() {
   }).catch((erro) => {
     console.error('Erro:', erro.message);
   })
+}
+
+
+
+const formInteress = document.getElementById('formInteressado');
+formInteress.onsubmit = validarCampos;
+
+// const urlAPI = 'http://localhost:4000/interessados'
+
+
+function gravarInteressado() {
+
+  const interessado = {
+    cpf: document.getElementById('cpf').value,
+    nome: document.getElementById('nome').value,
+    telefone: document.getElementById('telefone').value,
+    email: document.getElementById('email').value
+  }
+
+  // fetch(urlAPI, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(interessado)
+
+  // }).then((res)=> {
+  //   return res.json()
+  // }).then((resAPI)=> {
+  //   if(resAPI.status == true) {
+  //     exibirMessage(resAPI.message, 'green');
+  //   }
+  //   else {
+  //     exibirMessage(resAPI.message, 'red')
+  //   }
+  // }).catch((error) => {
+  //   exibirMessage(error, 'yellow')
+  // })
+
+}
+
+function excluirInteressado() {
+
+}
+
+function atualizarInteressado() {
+
+}
+
+function buscarInteressados() {
+
+}
+
+function validarCampos(event) {
+
+  const cpf = document.getElementById('cpf').value;
+  const nome = document.getElementById('nome').value;
+  const telefone = document.getElementById('telefone').value;
+  const email = document.getElementById('email').value;
+
+  event.stopPropagation();
+  event.preventDefault();
+
+  if (cpf && nome  && telefone && email) {
+    gravarInteressado()
+    return true;
+  } else {
+    exibirMessage('Preencha todos os campos do formulário')
+    return false;
+  }
+}
+
+function exibirMessage(message, cor = 'white') {
+  const divMessage = document.getElementById('message')
+
+  divMessage.innerHTML = "<p style='color:"+ cor +";>" + message + "</p>"
+
+  setTimeout(() => {
+    divMessage.innerHTML = ""
+  }, 5000)
+}
+
+function exibirInteressados() {
+
 }

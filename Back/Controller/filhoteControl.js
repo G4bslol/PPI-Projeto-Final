@@ -4,10 +4,10 @@ export default class FilhoteControl {
 
     gravar(req, res) {
         if (req.method == 'POST' && req.is("application/json")) {
-            const data = req.data;
-            const id = data.id
+            const data = req.body;
             const especie = data.especie
             const raca = data.raca
+            const id = data.id
 
             if (especie && raca) {
                 const filhote = new Filhote(especie, raca);
@@ -33,22 +33,24 @@ export default class FilhoteControl {
         } else {
             res.status(400).json({
                 "status": false,
-                "message": "Informe todos os dados do filhote!"
+                "message": "Requisição inválida, consulte a documentação!"
             })
         }
     }
 
     alterar(req, res) {
         if ((req.method == "PUT" || req.method == "PATCH") && req.is("application/json")) {
+            
+            console.log(JSON.stringify(req.body))
+            
             const data = req.data;
-            const id = data.id;
+
             const especie = data.especie;
             const raca = data.raca;
+            const id = data.id;
 
-
-            if (id && especie && raca) {
-                const filhote = new Filhote(id, especie, raca);
-
+            if (especie && raca && id) {
+                const filhote = new Filhote(especie, raca, id)
                 filhote.alterar().then(() => {
                     res.status(201).json({
                         "status": true,
