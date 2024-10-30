@@ -51,7 +51,7 @@ export default class InteressadoControl {
             const email = data.email
 
 
-            if (cpf && nome && telefone && email) {
+            if (cpf && nome && telefone && email && filhote) {
                 const interessado = new Interessado(cpf, nome, telefone, email);
 
                 interessado.alterar().then(() => {

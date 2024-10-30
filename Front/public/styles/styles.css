@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+   background-color: #0E1011;
+}
+
 nav {
     position: fixed;
     top: 0;
@@ -155,12 +159,12 @@ header button {
 }
 
 .formBox {
-    height: 100vh;
-    background: #0E1011;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding-top: 120px;
     
 }
 
@@ -176,7 +180,7 @@ header button {
     text-align: center;
     border: #162066 solid 1px;
     border-radius: 10px;
-    position: fixed;
+    top: 80;
 }
 
 .formBox .box button {
@@ -232,21 +236,29 @@ header button {
     
 }
 
+select {
+    height: 40px;
+    color: rgb(121, 121, 121);
+    background-color: #0E1011;
+    border-radius: 5px;
+    border: none;
+    margin-top: 5px;
+}
+
 .formBox .container {
     height: fit-content;
     display: inline-block;
     margin-top: 40px;
 }
 
-.container tr,
-td {
-    display: flex;
-    justify-content: space-evenly;
+table {
     text-align: center;
+    flex: 1 1 100%;
 }
 
-table {
-    width: 80vw;
+thead {
+    font-size: 18px;
+    text-align: center;
 }
 
 input[type="number"]::-webkit-outer-spin-button,

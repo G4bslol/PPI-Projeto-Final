@@ -120,7 +120,7 @@ export default class FilhoteControl {
             filhote.consultar(search).then((filhotes) => {
                 return res.status(200).json({
                     "status": true,
-                    "listafilhotes": filhotes
+                    "listaFilhotes": filhotes
 
                 })
             }).catch((error) => {
