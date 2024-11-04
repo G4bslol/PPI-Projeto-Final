@@ -49,10 +49,11 @@ export default class InteressadoControl {
             const nome = data.nome
             const telefone = data.telefone
             const email = data.email
+            const id = data.id
 
 
-            if (cpf && nome && telefone && email && filhote) {
-                const interessado = new Interessado(cpf, nome, telefone, email);
+            if (cpf && nome && telefone && email && id) {
+                const interessado = new Interessado(cpf, nome, telefone, email, id);
 
                 interessado.alterar().then(() => {
                     res.status(201).json({
@@ -78,11 +79,16 @@ export default class InteressadoControl {
     excluir(req, res) {
         console.log('Excluir\n\n')
         if (req.method == "DELETE" && req.is("application/json")) {
-            console.log(req)
+            const data = req.body;
+            const id = data.id
+            const cpf = data.cpf
+            const nome = data.nome
+            const telefone = data.telefone
+            const email = data.email
 
-            if (id) {
-                const interessado = new Interessado(id);
-                interessado.remover().then(() => {
+            if (id && cpf && nome && telefone && email) {
+                const interessado = new Interessado(cpf, nome, telefone, email, id);
+                interessado.excluir().then(() => {
                     res.status(200).json({
                         "status": true,
                         "message": "Interessado excluído com sucesso!"

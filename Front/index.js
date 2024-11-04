@@ -20,6 +20,10 @@ app.use(session({
 
 app.use(express.static('./public'))
 
+// app.use((req, res) => {
+//     res.status(404).redirect('/main.html');
+// });
+
 app.get('/logout', logout)
 
 app.post('/login', auth)
@@ -32,11 +36,8 @@ app.get('/filhote', (req, res) => {
     res.redirect('/filhote-cadastro.html')
 })
 
-app.use(validateAuth, express.static('./private', (req, res) => {}))
+app.use(validateAuth, express.static('./private', (req, res) => { }))
 
-// app.use((req, res) => {
-//     res.status(404).redirect('/main.html');
-// });
 
 app.listen(port, host, () => {
     console.log(`Servidor Front-End rodando em http://${host}:${port}`)

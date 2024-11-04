@@ -65,15 +65,12 @@ export default class interessadoDAO {
     }
 
     async remover(interessado) {
-        console.log('Excluir\n')
         if (interessado instanceof Interessado) {
-            console.log('Entrou no if')
             const conexao = await connect();
             const sql = `DELETE FROM interessado WHERE id = ?`;
             const parametros = [
                 interessado.id
             ]
-            console.log(interessado.toSring(), sql, parametros)
             await conexao.execute(sql, parametros);
             await global.poolConnections.releaseConnection(conexao)
         }

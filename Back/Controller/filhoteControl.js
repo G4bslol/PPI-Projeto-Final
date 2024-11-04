@@ -7,7 +7,6 @@ export default class FilhoteControl {
             const data = req.body;
             const especie = data.especie
             const raca = data.raca
-            const id = data.id
 
             if (especie && raca) {
                 const filhote = new Filhote(especie, raca);
@@ -43,7 +42,7 @@ export default class FilhoteControl {
             
             console.log(JSON.stringify(req.body))
             
-            const data = req.data;
+            const data = req.body;
 
             const especie = data.especie;
             const raca = data.raca;
@@ -80,7 +79,7 @@ export default class FilhoteControl {
             const raca = dados.raca;
 
             if (id) {
-                const filhote = new Filhote(id, especie, raca);
+                const filhote = new Filhote(especie, raca, id);
                 filhote.excluir().then(() => {
                     res.status(200).json({
                         "status": true,

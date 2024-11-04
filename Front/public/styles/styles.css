@@ -120,6 +120,10 @@ nav {
     background-color: rgba(221, 109, 109, 0.384);
     border: 2px solid rgba(150, 36, 36, 0.384);
 }
+.formBox .editar:hover {
+    background-color: rgba(214, 221, 109, 0.384);
+    border: 2px solid rgba(150, 148, 36, 0.384);
+}
 
 .logout {
     background-color: #333;

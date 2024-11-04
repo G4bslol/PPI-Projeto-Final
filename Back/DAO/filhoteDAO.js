@@ -61,7 +61,7 @@ export default class FilhoteDAO {
         console.log('Excluir\n')
         if (filhote instanceof Filhote) {
             const conexao = await connect();
-            const sql = `DELETE FROM filhote WHERE title = ?`;
+            const sql = `DELETE FROM filhote WHERE id = ?`;
             const parametros = [
                 filhote.id
             ]
@@ -79,7 +79,7 @@ export default class FilhoteDAO {
             parametros.push(param)
         }
         else {
-            sql = `SELECT * FROM filhote order by raca;`;
+            sql = `SELECT * FROM filhote order by id;`;
         }
 
         const conexao = await connect();

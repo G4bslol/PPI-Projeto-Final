@@ -47,32 +47,32 @@ function carregarFilhotes() {
     })
 }
 
-let motivo = 'CADASTRAR';
+let motivoAcao = 'CADASTRAR';
 
 const formInteress = document.getElementById('formInteressado');
 formInteress.onsubmit = validarCampos;
 
 const urlAPI = 'http://localhost:4000/interessados'
+
 buscarInteressados()
 carregarFilhotes()
 
 
-function selecionarInteressado(cpf, nome, telefone, email, motivo) {
+function selecionarInteressado(id, cpf, nome, telefone, email, motivo) {
+  document.getElementById('identificador').innerHTML = id
   document.getElementById('cpf').value = cpf
   document.getElementById('nome').value = nome
   document.getElementById('telefone').value = telefone
   document.getElementById('email').value = email
 
   motivoAcao = motivo;
-  const botaoConfirm = document.getElementById('botaoConfirm')
-  if (motivo == 'EDITAR') {
-    botaoConfirm.innerHTML ='EDITAR'
-  } else if (motivo == 'EXCLUIR') {
-    botaoConfirm.innerHTML ='EXCLUIR'
+  const botaoConfirm = document.getElementById('confirmButton')
+  if (motivoAcao == 'EDITAR') {
+    botaoConfirm.innerHTML = 'EDITAR'
+  } else if (motivoAcao == 'EXCLUIR') {
+    botaoConfirm.innerHTML = 'EXCLUIR'
   }
 }
-
-
 
 function gravarInteressado() {
 
@@ -102,10 +102,34 @@ function gravarInteressado() {
   }).catch((error) => {
     exibirMessage(error, 'yellow')
   })
-
+ 
 }
 
 function excluirInteressado() {
+  const interessadoObj = {
+    cpf: document.getElementById('cpf').value,
+    nome: document.getElementById('nome').value,
+    telefone: document.getElementById('telefone').value,
+    email: document.getElementById('email').value,
+    id: document.getElementById('identificador').innerHTML
+  }
+  fetch(urlAPI, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(interessadoObj)
+  }).then((res)=> {
+    return res.json();
+  }).then((resApi) => {
+    if (resApi.status == true) {
+      exibirMessage(resApi.message, 'green')
+    } else {
+      exibirMessage(resApi.message, 'red')
+    }
+  }).catch((error) => {
+    exibirMessage(error, 'yellow')
+  })
 
 
 
@@ -117,10 +141,11 @@ function atualizarInteressado() {
     nome: document.getElementById('nome').value,
     telefone: document.getElementById('telefone').value,
     email: document.getElementById('email').value,
+    id: document.getElementById('identificador').innerHTML
   }
 
   fetch(urlAPI, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -184,8 +209,8 @@ function exibirInteressados(listaInteressados) {
         <td>${interessado.telefone}</td>
         <td>${interessado.email}</td>
         <td>
-          <button onClick="selecionarInteressado('${interessado.cpf}', '${interessado.nome}', '${interessado.telefone}', '${interessado.email}', 'EDITAR')" class="btn btn-warning">Alterar</button>
-          <button onClick="selecionarInteressado('${interessado.cpf}', '${interessado.nome}', '${interessado.telefone}', '${interessado.email}', 'EXCLUIR')" class="btn btn-danger">Excluir</button>
+          <button onClick="selecionarInteressado('${interessado.id}','${interessado.cpf}', '${interessado.nome}', '${interessado.telefone}', '${interessado.email}', 'EDITAR')" class="btn btn-warning">Alterar</button>
+          <button onClick="selecionarInteressado('${interessado.id}','${interessado.cpf}', '${interessado.nome}', '${interessado.telefone}', '${interessado.email}', 'EXCLUIR')" class="btn btn-danger">Excluir</button>
         </td>
       `;
       body.appendChild(linha);
@@ -207,20 +232,21 @@ function validarCampos(event) {
   const nome = document.getElementById('nome').value;
   const telefone = document.getElementById('telefone').value;
   const email = document.getElementById('email').value;
-  const filhote = document.getElementById('filhote-select').value;
 
   event.stopPropagation();
   event.preventDefault();
 
-  if (cpf && nome && telefone && email && filhote) {
-    if(motivoAcao == 'CADASTRAR') {
+  if (cpf && nome && telefone && email) {
+    if (motivoAcao == 'CADASTRAR') {
       gravarInteressado();
     } else if (motivoAcao == "EDITAR") {
       atualizarInteressado()
-    } else if (motivoAcao == 'EXCLUIR') {
-      excluirInteressado();
+      motivoAcao = "CADASTRAR"
+    } else if (motivoAcao == "EXCLUIR") {
+      excluirInteressado()
+      motivoAcao = "CADASTRAR"
     }
-    
+
     formInteress.reset();
     buscarInteressados()
     return true;
